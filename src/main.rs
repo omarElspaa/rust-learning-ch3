@@ -7,11 +7,11 @@ fn main() {
 
 fn variables() {
     let mut x: isize = 5; // Architecture size
-    // The primary situation in which you'd use isize or usize is when indexing some sort of collection
+                          // The primary situation in which you'd use isize or usize is when indexing some sort of collection
     println!("{}", x); // This works.
     x = 6;
     println!("{x}"); // And this also works.
-    //const Y: i32 = 6 * x; This doesn't work
+                     //const Y: i32 = 6 * x; This doesn't work
 
     // Shadowing:
     let n: u8 = 5;
@@ -33,7 +33,7 @@ fn variables() {
 
     // // Integer Overflow
     // let temp: u16 = 256;
-    // let c: u8 = temp as u8; // When you're compiling in debug mode, Rust includes checks for integer overflow that cause you program to panic at runtime, but if you're compiling in release mode with the --release flag (i.e: cargo build --release), Rust does not include checks for integer overflow that cause panics, instead Rust performs two's complement wrapping, however, the compiler still performs other checks, such as range checks for literals assigned to fixed-size integer types like 'u8', relying on integer overflow's wrapping behavior is considered an error for more information go to page 38 
+    // let c: u8 = temp as u8; // When you're compiling in debug mode, Rust includes checks for integer overflow that cause you program to panic at runtime, but if you're compiling in release mode with the --release flag (i.e: cargo build --release), Rust does not include checks for integer overflow that cause panics, instead Rust performs two's complement wrapping, however, the compiler still performs other checks, such as range checks for literals assigned to fixed-size integer types like 'u8', relying on integer overflow's wrapping behavior is considered an error for more information go to page 38
     // println!("{c}");
 
     // Floating-point numbers are represented according to the IEEE-754 standard (which I honestly don't know anything about it).
@@ -76,8 +76,6 @@ fn variables() {
 
     // let b: bool = false OR true;
 
-
-
     // let c: char = '😀'; It must be '' => unicode scalar value
     // Unicode Scalar Value. Any Unicode code point except high-surrogate and low-surrogate code points. In other words, the ranges of integers 0 to D7FF16 and E00016 to 10FFFF16 inclusive.
     // U+xxxx is called the code point
@@ -88,8 +86,6 @@ fn variables() {
     // For historical reasons, the Unicode encoding forms are also referred to as Unicode (or UCS) transformation formats (UTF). That term is actually ambiguous between its usage for encoding forms and encoding schemes.
     // Encoding Forms: To store and manipulate the code points, Unicode provides different encoding forms, the most common being UTF-8, UTF-16, and UTF-32. Each of these encoding forms represents code points as sequences of one or more "code units".
 
-
-
     // Code Units:
 
     // UTF-8: Uses 8-bit code units. Each code point can be represented by one to four 8-bit code units.
@@ -97,15 +93,11 @@ fn variables() {
     // UTF-32: Uses 32-bit code units. Each code point is represented by a single 32-bit code unit.
     // The Basic Multilingual Plane (BMP) is the range of Unicode code points from U+0000 to U+FFFF. This plane includes the most commonly used characters.
 
-
-
     // UTF-16 can represent code points that fall within the BMP directly using a single 16-bit code unit. However, for code points outside the BMP (i.e., those from U+10000 to U+10FFFF), UTF-16 uses surrogate pairs. This means that two 16-bit code units are used together to represent a single character.
     // UTF-16 reserves two specific ranges within the 16-bit space for surrogates:
     // High Surrogates (Lead Surrogates): U+D800 to U+DBFF
     // Low Surrogates (Trail Surrogates): U+DC00 to U+DFFF
     // These ranges are reserved solely for constructing surrogate pairs and are not used to directly encode characters from the BMP.
-
-
 
     // Encoding Non-BMP Characters: When encoding a character outside the BMP:
     // Subtract 0x10000 from the code point to get a 20-bit value.
@@ -116,8 +108,14 @@ fn variables() {
 
     // UTF-16LE (UTF-16 Little Endian) and UTF-16BE (UTF-16 Big Endian) are two encoding schemes within the UTF-16 Unicode encoding format, differing primarily in byte order. In UTF-16LE, the least significant byte (LSB) of each 16-bit code unit comes first, followed by the most significant byte (MSB), while in UTF-16BE, this order is reversed, with the most significant byte preceding the least significant byte. This distinction in byte order is crucial for interoperability between systems with different endianness preferences. UTF-16LE is commonly used in modern computing environments, especially on little-endian systems like those based on Intel x86 architecture, while UTF-16BE is less common but necessary for big-endian systems. Despite this difference in byte order, both encoding schemes represent the same Unicode characters, ensuring compatibility across platforms through standardized encoding conventions.
 
-
-
     // Control characters are special non-printing characters in the Unicode and ASCII character sets used to control the interpretation or display of text, rather than to represent printable information. They were originally designed for communication control in text terminals and telecommunication systems.
 
+    // UTF-8
+    // ASCII characters (U+0000 to U+007F): Represented as single bytes with the same value as their ASCII code.
+    // Characters in the range U+0080 to U+07FF: Represented as two bytes. 11-bits at most
+    // Represented as: 110xxxxx 10xxxxxx
+    // Characters in the range U+0800 to U+FFFF: Represented as three bytes.
+    // Represented as: 1110xxxx 10xxxxxx 10xxxxxx
+    // Characters in the range U+10000 to U+10FFFF: Represented as four bytes.
+    // Represented as: 11110xxx 10xxxxxx 10xxxxxx 10xxxxxx
 }
