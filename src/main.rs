@@ -118,4 +118,8 @@ fn variables() {
     // Represented as: 1110xxxx 10xxxxxx 10xxxxxx
     // Characters in the range U+10000 to U+10FFFF: Represented as four bytes.
     // Represented as: 11110xxx 10xxxxxx 10xxxxxx 10xxxxxx
+
+    // Characters in rust are encoded in UTF-8 by default.
+    // encoding_rs: This crate offers encoding and decoding functionalities with a focus on UTF-16 (both little-endian and big-endian) alongside UTF-8.
+    // For more granular control, you can work with raw byte slices (&[u8]) and handle the encoding yourself. This approach requires a deeper understanding of character encoding and is generally less recommended due to potential for errors.
 }
