@@ -121,5 +121,43 @@ fn variables() {
 
     // Characters in rust are encoded in UTF-8 by default.
     // encoding_rs: This crate offers encoding and decoding functionalities with a focus on UTF-16 (both little-endian and big-endian) alongside UTF-8.
-    // For more granular control, you can work with raw byte slices (&[u8]) and handle the encoding yourself. This approach requires a deeper understanding of character encoding and is generally less recommended due to potential for errors.
+    // For more granular control, you can work with raw byte slices (&[u8]) and handle the encoding yourself. This approach requires a deeper understanding of character encoding and is generally less recommended due to potential for errors. for more information: https://gemini.google.com/app/2a6805514b902168
+
+
+
+    // The gap in valid char values is understood by the compiler, so in the below example the two ranges are understood to cover the whole range of possible char values and there is no error for a non-exhaustive match.
+
+    // let c: char = 'a';
+    // match c {
+    //     '\0' ..= '\u{D7FF}' => false,
+    //     '\u{E000}' ..= '\u{10FFFF}' => true,
+    // };
+
+    // All Unicode scalar values are valid char values, but not all of them represent a real character. Many Unicode scalar values are not currently assigned to a character, but may be in the future (“reserved”); some will never be a character (“noncharacters”); and some may be given different meanings by different users (“private use”).
+
+    // The ❤️ emoji appears as two characters in certain contexts because it is composed of a base character followed by a variation selector.
+    // In Unicode encoding, the base character comes first, followed by the variation selector. 
+    // for more info: https://chatgpt.com/c/01842d66-033b-49d2-8a8b-90cf4cc17dd5
+
+
+
+    // char in rust is always four bytes in size. This is a different representation than a given character would have as part of a String.
+
+    // let v = vec!['h', 'e', 'l', 'l', 'o'];
+    // five elements times four bytes for each element
+    // assert_eq!(20, v.len() * std::mem::size_of::<char>());
+    // let s = String::from("hello");
+    // five elements times one byte per element
+    // assert_eq!(5, s.len() * std::mem::size_of::<u8>());
+
+
+
+    // To represent text visually:
+    //  1. Character Decoding
+    //  2. Internal Data Structures e.g.: Arrays to Strings
+    //  3. Display Management
+    //   3.1. Rendering Engine: Converts the text into pixels on the screen. This involves handling fonts, sizes, colors, and possibly other styling information.
+    //   3.2. Line Breaking: Determines where lines of text break based on the width of the editor window, considering word wrapping and hyphenation.
+    //   3.3. Syntax Highlighting: Adds color and style to text based on its syntactic structure, useful for code editors.
+    //  ... for more technical information go to: https://chatgpt.com/c/2396788f-d457-4463-bf65-75fe52278d50
 }
