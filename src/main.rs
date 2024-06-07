@@ -10,8 +10,8 @@ fn variables() {
                           // The primary situation in which you'd use isize or usize is when indexing some sort of collection
     println!("{}", x); // This works.
     x = 6;
-    println!("{x}"); // And this also works.
-                     //const Y: i32 = 6 * x; This doesn't work
+    println!("{x}"); // And this also works. but if not mutable it will result a compile-time error
+                     //const Y: i32 = 6 * x; This doesn't work, because x is a non-constant
 
     // Shadowing:
     let n: u8 = 5;
@@ -30,11 +30,17 @@ fn variables() {
     let bin = 0b1111_0000;
     let byte = b'A'; // u8 only
     println!("{a}, {b}, {hex}, {oct}, {bin}, {byte}");
+    // -5 is 1011
 
     // // Integer Overflow
     // let temp: u16 = 256;
     // let c: u8 = temp as u8; // When you're compiling in debug mode, Rust includes checks for integer overflow that cause you program to panic at runtime, but if you're compiling in release mode with the --release flag (i.e: cargo build --release), Rust does not include checks for integer overflow that cause panics, instead Rust performs two's complement wrapping, however, the compiler still performs other checks, such as range checks for literals assigned to fixed-size integer types like 'u8', relying on integer overflow's wrapping behavior is considered an error for more information go to page 38
     // println!("{c}");
+
+    // For more info go to tcw.
+
+
+
 
     // Floating-point numbers are represented according to the IEEE-754 standard (which I honestly don't know anything about it).
 
@@ -160,4 +166,25 @@ fn variables() {
     //   3.2. Line Breaking: Determines where lines of text break based on the width of the editor window, considering word wrapping and hyphenation.
     //   3.3. Syntax Highlighting: Adds color and style to text based on its syntactic structure, useful for code editors.
     //  ... for more technical information go to: https://chatgpt.com/c/2396788f-d457-4463-bf65-75fe52278d50
+
+
+
+    // A tuple is a general way of grouping together a number of values with a variety of types into one compound type. Tuples have a fixed length: once declared, they cannot grow or shrink in size.
+    let tup: (i32, f64, u8) = (500, 6.4, 1);
+    let (x, y, z) = tup; // destructuring
+    println!("{x}, {y}, {z}, {}", tup.0); // i.e.: Rust can't format tuples.
+
+    // The tuple without any values has a special name, unit and it represent an empty value or an empty return type. Expressions implicitly return the unit value if they don't return any other value.
+    // let unit: () = ();
+
+
+
+    let _arr: [u8; 5] = [1, 2, 3, 4, 5]; // Rust can't format arrays either.
+    // _arr[0] compared to _tup.0
+    // Unlike a tuple, every element of an array must have the same type. Arrays in Rust have a fixed length.
+    // Arrays are useful when you want your data allocated on the stack rather than the heap (The stack and the heap are discussed in Chapter 4), an array isn't as flexible as the vector type.
+    // A vector is a similar collection type provided by the standard library that is allowed to grow or shrink in size
+    // let a = [3; 2]; == let a = [3, 3];
+    // The program will result a runtime error if you're using an invalid value for  the indexing operation.
+
 }
