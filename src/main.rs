@@ -185,6 +185,6 @@ fn variables() {
     // Arrays are useful when you want your data allocated on the stack rather than the heap (The stack and the heap are discussed in Chapter 4), an array isn't as flexible as the vector type.
     // A vector is a similar collection type provided by the standard library that is allowed to grow or shrink in size
     // let a = [3; 2]; == let a = [3, 3];
-    // The program will result a runtime error if you're using an invalid value for  the indexing operation.
+    // The program will result a runtime error if you're using an invalid value for the indexing operation.
 
 }

@@ -1,8 +1,8 @@
 # Compilation artifacts
-target/
+/target
 
 # Rust/Cargo-specific files
 Cargo.lock
 
 # Ignore Visual Studio Code files
-.vscode/
+/.vscode
