@@ -1,9 +1,16 @@
 fn main() {
     variables();
+    let x = five();
+    println!("{x}");
+    fn five() -> u8 {
+        5
+    }
 }
+
 
 // 1. Variables are immutable by default.
 // 2. Constants can be declared in any scope including the global scope, and can't be set to the result of a value that could only be computed at runtime, and must be type annotated, and its rust naming convention is to use all uppercase with underscores between words.
+// 3. If variables are declared and unused it will show a warning because `#[warn(unused_variables)]` is on by default, if it is intentional, prefix it with an underscore.
 
 fn variables() {
     let mut x: isize = 5; // Architecture size
@@ -186,5 +193,40 @@ fn variables() {
     // A vector is a similar collection type provided by the standard library that is allowed to grow or shrink in size
     // let a = [3; 2]; == let a = [3, 3];
     // The program will result a runtime error if you're using an invalid value for the indexing operation.
+    // This is an example of Rust's memory safety principles in action. In many low-level languages, this kind of check is not done, and when you provide an incorrect index, invalid memory can be accessed. Rust protects you against this kind of error by immediately exiting instead of allowing the memory access and continuing.
 
+
+
+    // Rust code uses snake case one_two as the conventional style for function and variables names in which all letters are lowercase and underscores separate words.
+    // The curly brackets of a function tell the compiler where the function body begins and ends
+
+
+
+    // We can define any function after the main ( or any function ) in the source; we can define it before as well.
+    // In Rust, the order of function definitions in the source code does not matter because the Rust compiler goes through several stages, including parsing, analysis, and code generation. During the parsing stage, the compiler collects all the function definitions in the entire crate before it starts analyzing and generating the code. This means that the Rust compiler knows about all functions and their signatures before it actually generates the code for the main function or any other functions.
+    // The parsing stage is an essential phase in the compilation process of a programming language like Rust. During this stage, the compiler reads the source code and translates it into a more structured format, typically an abstract syntax tree (AST), which represents the hierarchical syntactic structure of the code.
+    // for more info: https://chatgpt.com/c/6376590c-e2a8-4f11-bc36-eb6c1f43c476
+    // Functions are collected and processed during the initial parsing phase.
+    // Variables are context-sensitive and handled during semantic analysis.
+    // Semantic analysis is a critical phase in the process of compilation, which involves verifying the semantic correctness of a program. While syntax analysis (or parsing) ensures that the source code follows the grammatical rules of the programming language, semantic analysis goes a step further to ensure that the code adheres to the rules of meaning and logic specific to that language. for more info: https://chatgpt.com/c/dc1367b0-7150-4e00-86f2-6a2ae7c7d131
+
+
+
+    // Parameters: Are special variables that are part of a function's signature.
+    // A function signature in programming defines the function's name, its return type, and the types and names of its parameters.
+    // In function signatures, you must declare the type of each parameter.
+    // 1. When a function has parameters, you can provide it with concrete values for those parameters.
+    // 2. Technically, the concrete values are called arguments, but in casual conversation, people tend to use the words parameter and argument interchangeably for either the variables in a function's definition or the concrete values passed in when you call a function.
+    // Function bodies are made up of a series of statements optionally ending in an expression.
+    // We must declare the type of a return value after an arrow (->)
+
+
+
+
+    // Expression can be a part of a statment, because Rust is an expression-based language.
+    // Statements are instructions that perform some action and do not return a value
+    // Expressions evaluate to a resultant value.
+    // Calling a function, macro is an expression, and a new scope block created with curly brackets is an expression.
+    // You must use semicolon in the end of a statement.
+    // If the expression is with a semicolon it will be treated as a statement, but if it doesn't have any effect ( path statement without an effect ) it will show a warning because `#[warn(path_statements)] is on by default.
 }
