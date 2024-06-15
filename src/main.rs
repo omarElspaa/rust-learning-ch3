@@ -3,12 +3,15 @@ fn main() {
     let x = five();
     println!("{x}");
     fn five() -> u8 {
-        5
+        return 5
     }
-}
+    return;
+} // The main function must return a ()
+// unreachable code warning
 
 
-// 1. Variables are immutable by default.
+
+// 1. Variables are immutable by default, you can declare them in a statement and initialize a value for it in another statement.
 // 2. Constants can be declared in any scope including the global scope, and can't be set to the result of a value that could only be computed at runtime, and must be type annotated, and its rust naming convention is to use all uppercase with underscores between words.
 // 3. If variables are declared and unused it will show a warning because `#[warn(unused_variables)]` is on by default, if it is intentional, prefix it with an underscore.
 
@@ -49,7 +52,7 @@ fn variables() {
 
 
 
-    // Floating-point numbers are represented according to the IEEE-754 standard (which I honestly don't know anything about it).
+    // Floating-point numbers are represented according to the IEEE-754-2008 standard ( https://iremi.univ-reunion.fr/IMG/pdf/ieee-754-2008.pdf ).
 
     /*
         To understand it you will need to understand significant figures or digits:
@@ -218,15 +221,42 @@ fn variables() {
     // 1. When a function has parameters, you can provide it with concrete values for those parameters.
     // 2. Technically, the concrete values are called arguments, but in casual conversation, people tend to use the words parameter and argument interchangeably for either the variables in a function's definition or the concrete values passed in when you call a function.
     // Function bodies are made up of a series of statements optionally ending in an expression.
+    // Break, continue, return, ... never return a yield value, instead they immediately alter control flow and jump to some other part of the program. So their "return type" is never (!). The variable that is bind to the value of the loop get its value not because break is an expression, but because the entire point of break <value> is to abort the loop with the specified value as result.
+    // How does return work? return documentation
     // We must declare the type of a return value after an arrow (->)
 
 
 
-
+    // A statement is a component of a block, which is in turn a component of an outer expression or function.
+    // for more info go to https://doc.rust-lang.org/reference/statements-and-expressions.html
     // Expression can be a part of a statment, because Rust is an expression-based language.
     // Statements are instructions that perform some action and do not return a value
     // Expressions evaluate to a resultant value.
     // Calling a function, macro is an expression, and a new scope block created with curly brackets is an expression.
     // You must use semicolon in the end of a statement.
+    // { code }; Valid but semicolon is unnecessary and this also work with if and loop.
     // If the expression is with a semicolon it will be treated as a statement, but if it doesn't have any effect ( path statement without an effect ) it will show a warning because `#[warn(path_statements)] is on by default.
+    // When statements don't evaluate to a value it is expressed by (), the unit type.
+
+
+
+    // Control Flow
+    // if condition { code } else if condition { code } else { code }
+    // Blocks of code associated with the conditions in if expressions are sometimes called arms.
+    // Condition in if expressions must be a bool.
+    // let number = if condition {5} else {6};
+    // The code above actually works but you must add an else.
+    // Blocks of code evaluate to the last expression in them.
+    // The value of the whole if expression depends on which block of code executes.This means the values that have the potential to be results from each arm of the if must be the same type.
+
+
+
+    // loop { code } => to loop
+    // Break keyword: It is used within the loop to tell the program when to stop executing the loop.
+    // Continue keyword: It is used within the loop to tell the program to skip over any remaining code in this iteration of the loop and go to the next iteration.
+    // What is an iteration?
+    // One of the uses of a loop is to retry an operation you know might fail, such as checking whether a thread has completed its job. you might also need to pass the result of that operation out of the loop to the rest of your code. To do this, you can add the value you want returned after the break expression you use to stop the loop => break value;
+    // You can use loop labels 'name: loop { code } before loop for while or {}.
+    // You can use while condition { do }.
+    // You can also use for element in arr { do }.
 }
