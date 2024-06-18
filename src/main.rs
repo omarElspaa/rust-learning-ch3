@@ -5,14 +5,40 @@ fn main() {
     fn five() -> u8 {
         return 5
     }
+    if true {
+        println!("This is always true");
+    } else {
+        println!("This is unreachable code"); // Warning: unreachable code
+    }
     return;
-} // The main function must return a ()
-// unreachable code warning
+} // As of Rust 1.26, main can return a Result.
+// In Rust, the main function can have different signatures depending on what you want it to do. It can either return () (the unit type) or a Result type. These are two different valid signatures for the main function, but you can only choose one for a given program.
+
+// The return type of the main function is typically (), which represents an empty tuple. This signifies that the main function does not return any value.
+
+// However, Rust's main function can also return a Result. This allows the main function to return an error if something goes wrong.
+
+// fn main() -> Result<(), Box<dyn Error>> {
+//     // Attempt to open a file, which might fail
+//     let _file = File::open("non_existent_file.txt")?;
+//     println!("File opened successfully.");
+//     Ok(())
+// }
+
+
+
+// Unreachable code compile-time warning
+// 1. After return, break, or continue statements.
+// 2. After panic! macro.
+// 3. After an infinite loop.
+// 4. After an unconditional return in a match block.
+// 5. After a call to a function that never returns a value like !.
+// LAST. Note that Rust compiler doesn't consider the code inside if false {} block or the code in the else block after the if true {} or the code after the call in an unconditional recursion case an unreachable code.
 
 
 
 // 1. Variables are immutable by default, you can declare them in a statement and initialize a value for it in another statement.
-// 2. Constants can be declared in any scope including the global scope, and can't be set to the result of a value that could only be computed at runtime, and must be type annotated, and its rust naming convention is to use all uppercase with underscores between words.
+// 2. Constants can be declared in any scope including the global scope, they must have a value that can be determined at compile time, and must be type annotated, and its rust naming convention is to use all uppercase with underscores between words.
 // 3. If variables are declared and unused it will show a warning because `#[warn(unused_variables)]` is on by default, if it is intentional, prefix it with an underscore.
 
 fn variables() {
@@ -21,11 +47,10 @@ fn variables() {
     println!("{}", x); // This works.
     x = 6;
     println!("{x}"); // And this also works. but if not mutable it will result a compile-time error
-                     //const Y: i32 = 6 * x; This doesn't work, because x is a non-constant
 
     // Shadowing:
     let n: u8 = 5;
-    let n: u8 = n + 1;
+    let n: u8 = n + 1; // This actually works.
     {
         let n: u8 = n * 2;
         println!("{n}");
