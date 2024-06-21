@@ -108,6 +108,7 @@ fn variables() {
             The formula to Calculate it is (-1)^sign x(1 + significand (23 or 52 bit)) X 2^exponent-bias
     */
     let num: f32 = 4.36; // Change this to the number you want to convert
+    // f32 shows from 7 to 9 significant decimal digits and f64 shows from 15 to 17.
 
     let bits: u32 = num.to_bits();
 
